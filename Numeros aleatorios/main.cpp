@@ -7,6 +7,11 @@ using namespace std;
 using namespace NTL;
 
 
+ZZ module(ZZ a, ZZ n){
+    ZZ r = a-n*(a/n);
+    r = r+(r<0)*n;
+    return r;
+}
 
 
 class Trivium{
@@ -20,8 +25,9 @@ private:
 
     void generate_Key_and_IV(){
         for(int i=0;i<80;i++){
-            IV[i]=rand()%2;
-            key[i]=rand()%2;
+            ZZ ran(rand());
+            IV[i]=to_int(module(ran,ZZ(2)));
+            key[i]=to_int(module(ran,ZZ(2)));
         }
     }
 
