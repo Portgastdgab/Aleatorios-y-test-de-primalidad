@@ -73,7 +73,7 @@ bool millerRabinTest(ZZ number, ZZ iter)
 		{
 			x= module(x*x,number);
 			//x= x*x % n;
-			d *= 2;
+			d <<=1;
 
 			if (x == 1)   return false;
 			if (x == number-1)  return true;
